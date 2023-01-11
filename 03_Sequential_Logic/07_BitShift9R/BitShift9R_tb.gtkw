@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 22 17:45:42 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/03_Sequential_Logic/05_BitShift9R/BitShift9R_tb.vcd"
+[dumpfile_mtime] "Thu Dec 22 17:45:34 2022"
+[dumpfile_size] 91711
+[savefile] "/home/micha/gitlab/nand2tetris/03_Sequential_Logic/05_BitShift9R/BitShift9R_tb.gtkw"
+[timestart] 0
+[size] 1712 730
+[pos] -1 -1
+*-4.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 177
+@200
+-IN
+@28
+BitShift9R_tb.clk
+BitShift9R_tb.inMSB
+@22
+BitShift9R_tb.in[8:0]
+@28
+BitShift9R_tb.shift
+BitShift9R_tb.load
+@200
+-OUT
+@22
+BitShift9R_tb.out[8:0]
+@200
+-CMP
+@22
+BitShift9R_tb.out_cmp[8:0]
+@201
+-Test
+@28
+BitShift9R_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

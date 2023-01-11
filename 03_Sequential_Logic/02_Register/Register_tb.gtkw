@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 22 17:44:03 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/03_Sequential_Logic/02_Register/Register_tb.vcd"
+[dumpfile_mtime] "Thu Dec 22 17:43:41 2022"
+[dumpfile_size] 182432
+[savefile] "/home/micha/gitlab/nand2tetris/03_Sequential_Logic/02_Register/Register_tb.gtkw"
+[timestart] 0
+[size] 1920 963
+[pos] -1 -1
+*-1.000000 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 160
+[sst_expanded] 1
+[sst_vpaned_height] 258
+@28
+Register_tb.clk
+@200
+-IN
+@22
+Register_tb.in[15:0]
+@28
+Register_tb.load
+@200
+-OUT
+@22
+Register_tb.out[15:0]
+@200
+-CMP
+@22
+Register_tb.out_cmp[15:0]
+@200
+-Test
+@28
+Register_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Sat Dec 31 10:22:59 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris-fpga/03_Sequential_Logic/04_RAM512/RAM512_tb.vcd"
+[dumpfile_mtime] "Sat Dec 31 10:22:49 2022"
+[dumpfile_size] 259286
+[savefile] "/home/micha/gitlab/nand2tetris-fpga/03_Sequential_Logic/04_RAM512/RAM512_tb.gtkw"
+[timestart] 0
+[size] 1700 626
+[pos] -1 -1
+*-8.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 160
+[sst_expanded] 1
+[sst_vpaned_height] 142
+@200
+-IN
+@28
+RAM512_tb.clk
+@22
+RAM512_tb.address[8:0]
+RAM512_tb.in[15:0]
+@28
+RAM512_tb.load
+@200
+-OUT
+@22
+RAM512_tb.out[15:0]
+@200
+-CMP
+@22
+RAM512_tb.out_cmp[15:0]
+@200
+-Test
+@29
+RAM512_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

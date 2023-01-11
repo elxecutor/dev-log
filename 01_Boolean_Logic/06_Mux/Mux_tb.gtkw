@@ -1,0 +1,36 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 22 14:49:39 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/06_Mux/Mux_tb.vcd"
+[dumpfile_mtime] "Thu Dec 22 14:49:24 2022"
+[dumpfile_size] 2362
+[savefile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/06_Mux/Mux_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-1.619024 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 100
+[sst_expanded] 1
+[sst_vpaned_height] 132
+@200
+-IN
+@28
+Mux_tb.a
+Mux_tb.b
+Mux_tb.sel
+@200
+-OUT
+@28
+Mux_tb.out
+@200
+-CMP
+@29
+Mux_tb.out_cmp
+@200
+-Test
+@28
+Mux_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,67 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Tue Nov 22 10:53:14 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/05_Computer_Architecture/02_Memory/Memory_tb.vcd"
+[dumpfile_mtime] "Tue Nov 22 10:50:29 2022"
+[dumpfile_size] 15133403
+[savefile] "/home/micha/gitlab/nand2tetris/05_Computer_Architecture/02_Memory/Memory_tb.gtkw"
+[timestart] 0
+[size] 1920 963
+[pos] -1 -1
+*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 160
+[sst_expanded] 1
+[sst_vpaned_height] 258
+@200
+-IN
+@22
+Memory_tb.address[15:0]
+Memory_tb.inRAM[15:0]
+Memory_tb.inIO0[15:0]
+Memory_tb.inIO1[15:0]
+Memory_tb.inIO2[15:0]
+Memory_tb.inIO3[15:0]
+Memory_tb.inIO4[15:0]
+Memory_tb.inIO5[15:0]
+Memory_tb.inIO6[15:0]
+Memory_tb.inIO7[15:0]
+Memory_tb.inIO8[15:0]
+Memory_tb.inIO9[15:0]
+Memory_tb.inIOA[15:0]
+Memory_tb.inIOB[15:0]
+Memory_tb.inIOC[15:0]
+Memory_tb.inIOD[15:0]
+Memory_tb.inIOE[15:0]
+Memory_tb.inIOF[15:0]
+@28
+Memory_tb.load
+@200
+-OUT
+@22
+Memory_tb.out[15:0]
+@28
+Memory_tb.loadRAM
+Memory_tb.loadIO0
+Memory_tb.loadIO1
+Memory_tb.loadIO2
+Memory_tb.loadIO3
+Memory_tb.loadIO4
+Memory_tb.loadIO5
+Memory_tb.loadIO6
+Memory_tb.loadIO7
+Memory_tb.loadIO8
+Memory_tb.loadIO9
+Memory_tb.loadIOA
+Memory_tb.loadIOB
+Memory_tb.loadIOC
+Memory_tb.loadIOD
+Memory_tb.loadIOE
+Memory_tb.loadIOF
+@200
+-Test
+@29
+Memory_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

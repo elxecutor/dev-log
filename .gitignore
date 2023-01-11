@@ -1,0 +1,12 @@
+*~
+*.asc
+*.json
+*.bin
+*.out
+*.vcd
+*.dblite
+*.hack
+*.vm
+out.asm
+out.hack
+.*

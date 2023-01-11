@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 29 21:52:20 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris-fpga/05_Computer_Architecture/03_Clock_Reset/Clock25_Reset20_tb.vcd"
+[dumpfile_mtime] "Thu Dec 29 21:51:50 2022"
+[dumpfile_size] 2320447
+[savefile] "/home/micha/gitlab/nand2tetris-fpga/05_Computer_Architecture/03_Clock_Reset/Clock25_Reset20_tb.gtkw"
+[timestart] 0
+[size] 1636 438
+[pos] -1 -1
+*-17.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 80
+[sst_expanded] 1
+[sst_vpaned_height] 76
+@28
+Clock25_Reset20_tb.CLK
+Clock25_Reset20_tb.clk
+@29
+Clock25_Reset20_tb.reset
+[pattern_trace] 1
+[pattern_trace] 0

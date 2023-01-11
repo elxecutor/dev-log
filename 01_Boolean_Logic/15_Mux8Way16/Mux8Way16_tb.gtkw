@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 22 14:41:14 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/14_Mux8Way16/Mux8Way16_tb.vcd"
+[dumpfile_mtime] "Thu Dec 22 14:40:51 2022"
+[dumpfile_size] 2373256
+[savefile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/14_Mux8Way16/Mux8Way16_tb.gtkw"
+[timestart] 0
+[size] 1920 963
+[pos] -1 -1
+*0.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 160
+[sst_expanded] 1
+[sst_vpaned_height] 259
+@200
+-IN
+@22
+Mux8Way16_tb.a[15:0]
+Mux8Way16_tb.b[15:0]
+Mux8Way16_tb.c[15:0]
+Mux8Way16_tb.d[15:0]
+Mux8Way16_tb.e[15:0]
+Mux8Way16_tb.f[15:0]
+Mux8Way16_tb.g[15:0]
+Mux8Way16_tb.h[15:0]
+@28
+Mux8Way16_tb.sel[2:0]
+@200
+-OUT
+@22
+Mux8Way16_tb.out[15:0]
+@200
+-CMP
+@22
+Mux8Way16_tb.out_cmp[15:0]
+@201
+-Test
+@28
+Mux8Way16_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

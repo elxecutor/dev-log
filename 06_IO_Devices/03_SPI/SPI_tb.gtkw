@@ -1,0 +1,48 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Fri Dec 30 13:39:55 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris-fpga/06_IO_Devices/03_SPI/SPI_tb.vcd"
+[dumpfile_mtime] "Fri Dec 30 13:39:20 2022"
+[dumpfile_size] 238580
+[savefile] "/home/micha/gitlab/nand2tetris-fpga/06_IO_Devices/03_SPI/SPI_tb.gtkw"
+[timestart] 0
+[size] 1606 597
+[pos] 88 59
+*-19.000000 107000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 160
+[sst_expanded] 1
+[sst_vpaned_height] 132
+@28
+SPI_tb.clk
+@200
+-IN
+@28
+SPI_tb.load
+@22
+SPI_tb.in[15:0]
+@28
+SPI_tb.SDI
+@200
+-OUT
+@28
+SPI_tb.CSX
+SPI_tb.SDO
+SPI_tb.SCK
+@22
+SPI_tb.out[15:0]
+@200
+-CMP
+@28
+SPI_tb.CSX_cmp
+SPI_tb.SDO_cmp
+SPI_tb.SCK_cmp
+@22
+SPI_tb.out_cmp[15:0]
+@200
+-Test
+@29
+SPI_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

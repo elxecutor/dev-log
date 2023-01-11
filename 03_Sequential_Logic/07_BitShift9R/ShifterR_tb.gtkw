@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Nov 24 12:29:38 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/03_Sequential_Logic/07_ShifterR/ShifterR_tb.vcd"
+[dumpfile_mtime] "Thu Nov 24 12:28:59 2022"
+[dumpfile_size] 67820
+[savefile] "/home/micha/gitlab/nand2tetris/03_Sequential_Logic/07_ShifterR/ShifterR_tb.gtkw"
+[timestart] 0
+[size] 1920 963
+[pos] -1 -1
+*-3.000000 14 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 259
+@28
+ShifterR_tb.clk
+@200
+-IN
+@22
+ShifterR_tb.in[9:0]
+@28
+ShifterR_tb.inMSB
+ShifterR_tb.load
+ShifterR_tb.shift
+@200
+-OUT
+@22
+ShifterR_tb.out[9:0]
+@200
+-CMP
+@23
+ShifterR_tb.out_cmp[9:0]
+@28
+ShifterR_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 22 14:44:04 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/12_Or8Way/Or8Way_tb.vcd"
+[dumpfile_mtime] "Thu Dec 22 14:43:43 2022"
+[dumpfile_size] 792009
+[savefile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/12_Or8Way/Or8Way_tb.gtkw"
+[timestart] 0
+[size] 1920 963
+[pos] -1 -1
+*-2.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 100
+[sst_expanded] 1
+[sst_vpaned_height] 259
+@200
+-IN
+@22
+Or8Way_tb.in[7:0]
+@200
+-OUT
+@28
+Or8Way_tb.out
+@200
+-CMP
+@28
+Or8Way_tb.out_cmp
+@201
+-Test
+@28
+Or8Way_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

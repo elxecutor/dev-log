@@ -1,0 +1,42 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 29 18:09:36 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris-fpga/06_IO_Devices/05_GO/GO_tb.vcd"
+[dumpfile_mtime] "Thu Dec 29 18:09:26 2022"
+[dumpfile_size] 80439
+[savefile] "/home/micha/gitlab/nand2tetris-fpga/06_IO_Devices/05_GO/GO_tb.gtkw"
+[timestart] 0
+[size] 1440 713
+[pos] 34 87
+*-17.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 240
+[sst_expanded] 1
+[sst_vpaned_height] 172
+@200
+-IN
+@28
+GO_tb.clk
+GO_tb.load
+@22
+GO_tb.pc[15:0]
+GO_tb.sram_addr[15:0]
+GO_tb.ROM_data[15:0]
+GO_tb.sram_data[15:0]
+@200
+-OUT
+@22
+GO_tb.SRAM_ADDR[15:0]
+GO_tb.instruction[15:0]
+@200
+-CMP
+@22
+GO_tb.SRAM_ADDR_cmp[15:0]
+GO_tb.instruction_cmp[15:0]
+@200
+-Test
+@28
+GO_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0

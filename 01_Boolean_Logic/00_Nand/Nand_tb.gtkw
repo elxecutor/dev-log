@@ -1,0 +1,32 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Dec 22 14:24:30 2022
+[*]
+[dumpfile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/00_Nand/Nand_tb.vcd"
+[dumpfile_mtime] "Thu Dec 22 14:23:51 2022"
+[dumpfile_size] 466
+[savefile] "/home/micha/gitlab/nand2tetris/01_Boolean_Logic/00_Nand/Nand_tb.gtkw"
+[timestart] 0
+[size] 1348 589
+[pos] -1 -1
+*-0.771027 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 281
+[signals_width] 100
+[sst_expanded] 1
+[sst_vpaned_height] 129
+@200
+-IN
+@28
+Nand_tb.a
+Nand_tb.b
+@200
+-OUT
+@28
+Nand_tb.out
+@200
+-CMP
+@28
+Nand_tb.out_cmp
+Nand_tb.fail
+[pattern_trace] 1
+[pattern_trace] 0
