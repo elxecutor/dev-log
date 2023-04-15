@@ -1,7 +1,7 @@
 /**
-* 10 bit Shiftregister (shifts to right)
+* 9 bit Shiftregister (shifts to right)
 * if      (load == 1)  out[t+1] = in[t]
-* else if (shift == 1) out[t+1] = out[t]>>1 | (inMSB<<9)
+* else if (shift == 1) out[t+1] = out[t]>>1 | (inMSB<<8)
 * (shift one position to right and insert inMSB as most significant bit)
 */
 
