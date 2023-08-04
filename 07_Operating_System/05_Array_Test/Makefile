@@ -1,13 +1,15 @@
+PYTHON = python3.11
+
 all: jack vm asm bin sim
 
 jack:
-	../../tools/JackCompiler/JackCompiler.pyc ./
+	$(PYTHON) ../../tools/JackCompiler/JackCompiler.pyc ./
 vm:
-	../../tools/VMTranslator/VMTranslator.pyc ./
+	$(PYTHON) ../../tools/VMTranslator/VMTranslator.pyc ./
 asm:
-	../../tools/Assembler/assembler.pyc out.asm
+	$(PYTHON) ../../tools/Assembler/assembler.pyc out.asm
 bin:
-	../../tools/AsciiToBin.py out.hack
+	$(PYTHON) ../../tools/AsciiToBin.py out.hack
 sim:
 	cp out.hack ../00_HACK/ROM.hack
 upload:
