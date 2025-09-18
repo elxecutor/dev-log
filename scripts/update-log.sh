@@ -41,7 +41,7 @@ EOF
 )
 
 # Check if this date already exists in the log
-if grep -q "^\[$DATE\]" "$LOG_FILE"; then
+if [[ -f "$LOG_FILE" ]] && grep -q "^\[$DATE\]" "$LOG_FILE"; then
     echo "⚠️  Entry for $DATE already exists. Updating..."
     
     # Create a temporary file with the updated content
