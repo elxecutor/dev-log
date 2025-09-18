@@ -133,7 +133,7 @@ mv "$TEMP_JSON" "$JSON_FILE"
 
 # Sort JSON entries by date (newest first)
 TEMP_JSON=$(mktemp)
-jq '.entries |= sort_by(.date) | reverse' "$JSON_FILE" > "$TEMP_JSON"
+jq '.entries |= (sort_by(.date) | reverse)' "$JSON_FILE" > "$TEMP_JSON"
 mv "$TEMP_JSON" "$JSON_FILE"
 
 # Generate daily markdown summary
