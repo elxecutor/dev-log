@@ -2,8 +2,8 @@ name: 📊 Daily Activity Logger
 
 on:
   schedule:
-    # Daily activity logging at 11:59 PM UTC
-    - cron: '59 23 * * *'
+    # Daily activity logging at 11:59 PM UTC+1 (10:59 PM UTC)
+    - cron: '59 22 * * *'
   
   # Allow manual triggering
   workflow_dispatch:
