@@ -90,7 +90,7 @@ The system runs automatically via GitHub Actions:
 ```
 
 ### Key Components:
-- **Daily Automation**: GitHub Actions workflow runs daily at 11:58 PM UTC+1
+- **Daily Automation**: GitHub Actions workflow runs daily at 11:59 PM UTC+1
 - **Dual Logging**: Both human and machine-readable formats for flexibility
 - **API Integration**: Fetches data from WakaTime and GitHub APIs
 - **Daily Summaries**: Individual markdown files for each day with detailed breakdowns
