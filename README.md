@@ -1,5 +1,5 @@
 
-# � Development Activity Logger
+# Development Activity Logger
 
 An automated system that tracks and logs daily development activities by collecting data from WakaTime and GitHub, maintaining comprehensive logs of coding time and contributions.
 
