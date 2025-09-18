@@ -82,51 +82,64 @@ if [[ ! -f "$JSON_FILE" ]]; then
     echo '{"entries": []}' > "$JSON_FILE"
 fi
 
-# Create JSON entry
-JSON_ENTRY=$(cat << EOF
-{
-  "date": "$DATE",
-  "displayDate": "$DISPLAY_DATE",
-  "wakatime": {
-    "hours": $WAKATIME_HOURS,
-    "minutes": $WAKATIME_MINUTES,
-    "totalSeconds": $((WAKATIME_HOURS * 3600 + WAKATIME_MINUTES * 60))
-  },
-  "github": {
-    "totalContributions": $GITHUB_TOTAL,
-    "commits": $GITHUB_COMMITS,
-    "pullRequests": $GITHUB_PRS,
-    "issues": $GITHUB_ISSUES,
-    "reviews": $GITHUB_REVIEWS,
-    "repositories": $GITHUB_REPOS
-  },
-  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-}
-EOF
-)
+# Create JSON entry using jq to ensure proper formatting
+JSON_ENTRY=$(jq -n \
+  --arg date "$DATE" \
+  --arg displayDate "$DISPLAY_DATE" \
+  --argjson hours "$WAKATIME_HOURS" \
+  --argjson minutes "$WAKATIME_MINUTES" \
+  --argjson totalContributions "$GITHUB_TOTAL" \
+  --argjson commits "$GITHUB_COMMITS" \
+  --argjson prs "$GITHUB_PRS" \
+  --argjson issues "$GITHUB_ISSUES" \
+  --argjson reviews "$GITHUB_REVIEWS" \
+  --argjson repos "$GITHUB_REPOS" \
+  --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+  '{
+    "date": $date,
+    "displayDate": $displayDate,
+    "wakatime": {
+      "hours": $hours,
+      "minutes": $minutes,
+      "totalSeconds": ($hours * 3600 + $minutes * 60)
+    },
+    "github": {
+      "totalContributions": $totalContributions,
+      "commits": $commits,
+      "pullRequests": $prs,
+      "issues": $issues,
+      "reviews": $reviews,
+      "repositories": $repos
+    },
+    "timestamp": $timestamp
+  }')
 
 # Check if entry for this date already exists in JSON
 if jq -e ".entries[] | select(.date == \"$DATE\")" "$JSON_FILE" > /dev/null 2>&1; then
     echo "⚠️  JSON entry for $DATE already exists. Updating..."
     
-    # Remove existing entry and add new one
+    # Remove existing entry first
     TEMP_JSON=$(mktemp)
-    jq ".entries |= map(select(.date != \"$DATE\"))" "$JSON_FILE" > "$TEMP_JSON"
-    jq ".entries += [$JSON_ENTRY]" "$TEMP_JSON" > "$JSON_FILE"
-    rm "$TEMP_JSON"
-else
-    echo "➕ Adding new JSON entry for $DATE..."
-    
-    # Add new entry to JSON
-    TEMP_JSON=$(mktemp)
-    jq ".entries += [$JSON_ENTRY]" "$JSON_FILE" > "$TEMP_JSON"
+    jq ".entries = [.entries[] | select(.date != \"$DATE\")]" "$JSON_FILE" > "$TEMP_JSON"
     mv "$TEMP_JSON" "$JSON_FILE"
 fi
+
+echo "➕ Adding JSON entry for $DATE..."
+
+# Add new entry to JSON
+TEMP_JSON=$(mktemp)
+jq --argjson entry "$JSON_ENTRY" '.entries += [$entry]' "$JSON_FILE" > "$TEMP_JSON"
+mv "$TEMP_JSON" "$JSON_FILE"
 
 # Sort JSON entries by date (newest first)
 TEMP_JSON=$(mktemp)
 jq '.entries |= sort_by(.date) | reverse' "$JSON_FILE" > "$TEMP_JSON"
 mv "$TEMP_JSON" "$JSON_FILE"
+
+# Generate daily markdown summary
+echo "📝 Generating daily markdown summary..."
+chmod +x scripts/generate-daily-summary.sh
+./scripts/generate-daily-summary.sh "$DATE"
 
 echo "✅ Activity logs updated successfully!"
 
@@ -145,6 +158,7 @@ echo ""
 echo "📄 Updated files:"
 echo "   - $LOG_FILE (human-readable)"
 echo "   - $JSON_FILE (machine-readable)"
+echo "   - summaries/$DATE.md (daily summary)"
 
 # Optional: Show detailed information if available
 if [[ -f /tmp/wakatime_details ]]; then

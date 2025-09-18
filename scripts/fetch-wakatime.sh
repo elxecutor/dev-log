@@ -23,8 +23,7 @@ echo "🕐 Fetching WakaTime data for $DATE..."
 WAKATIME_DATA_FILE="/tmp/wakatime_data.json"
 
 # Fetch summaries for the specific date
-curl -s -H "Authorization: Bearer $WAKATIME_API_KEY" \
-     "https://wakatime.com/api/v1/users/current/summaries?start=$DATE&end=$DATE" \
+curl -s "https://wakatime.com/api/v1/users/current/summaries?start=$DATE&end=$DATE&api_key=$WAKATIME_API_KEY" \
      -o "$WAKATIME_DATA_FILE"
 
 # Check if the API call was successful
@@ -48,9 +47,12 @@ if [[ "$TOTAL_SECONDS" == "null" || "$TOTAL_SECONDS" == "0" ]]; then
     echo "0" > /tmp/wakatime_hours
     echo "0" > /tmp/wakatime_minutes
 else
+    # Convert decimal seconds to integer (round down)
+    TOTAL_SECONDS_INT=$(echo "$TOTAL_SECONDS" | cut -d. -f1)
+    
     # Convert seconds to hours and minutes
-    HOURS=$((TOTAL_SECONDS / 3600))
-    MINUTES=$(((TOTAL_SECONDS % 3600) / 60))
+    HOURS=$((TOTAL_SECONDS_INT / 3600))
+    MINUTES=$(((TOTAL_SECONDS_INT % 3600) / 60))
     
     echo "✅ WakaTime: ${HOURS}h ${MINUTES}m (${TOTAL_SECONDS}s total)"
     

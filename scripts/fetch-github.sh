@@ -32,36 +32,22 @@ START_DATE="${DATE}T00:00:00Z"
 END_DATE="${DATE}T23:59:59Z"
 
 # GraphQL query to get contributions for the specific date
-GRAPHQL_QUERY=$(cat << EOF
+GRAPHQL_QUERY=$(cat << 'EOF'
 {
-  "query": "query(\$username: String!, \$from: DateTime!, \$to: DateTime!) {
-    user(login: \$username) {
-      contributionsCollection(from: \$from, to: \$to) {
-        totalCommitContributions
-        totalIssueContributions
-        totalPullRequestContributions
-        totalPullRequestReviewContributions
-        totalRepositoryContributions
-        contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              contributionCount
-              date
-            }
-          }
-        }
-      }
-    }
-  }",
+  "query": "query($username: String!, $from: DateTime!, $to: DateTime!) { user(login: $username) { contributionsCollection(from: $from, to: $to) { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions totalRepositoryContributions contributionCalendar { totalContributions weeks { contributionDays { contributionCount date } } } } } }",
   "variables": {
-    "username": "$GITHUB_USERNAME",
-    "from": "$START_DATE",
-    "to": "$END_DATE"
+    "username": "USERNAME_PLACEHOLDER",
+    "from": "FROM_PLACEHOLDER",
+    "to": "TO_PLACEHOLDER"
   }
 }
 EOF
 )
+
+# Replace placeholders with actual values
+GRAPHQL_QUERY=$(echo "$GRAPHQL_QUERY" | sed "s/USERNAME_PLACEHOLDER/$GITHUB_USERNAME/g")
+GRAPHQL_QUERY=$(echo "$GRAPHQL_QUERY" | sed "s/FROM_PLACEHOLDER/$START_DATE/g")
+GRAPHQL_QUERY=$(echo "$GRAPHQL_QUERY" | sed "s/TO_PLACEHOLDER/$END_DATE/g")
 
 # Make the GraphQL API call
 curl -s -H "Authorization: bearer $GITHUB_TOKEN" \

@@ -1,29 +1,15 @@
-name: 🚀 GitHub Contribution Streak Keeper
+name: 📊 Daily Activity Logger
 
 on:
   schedule:
-    # Daily activity logging at midnight UTC
-    - cron: '0 0 * * *'
-    # Weekly summary generation on Sundays at 1 AM UTC
-    - cron: '0 1 * * 0'
+    # Daily activity logging at 11:59 PM UTC
+    - cron: '59 23 * * *'
   
   # Allow manual triggering
   workflow_dispatch:
-    inputs:
-      force_commit:
-        description: 'Force commit even if weekly threshold is met'
-        required: false
-        default: 'false'
-        type: boolean
-      generate_summary:
-        description: 'Generate weekly summary'
-        required: false
-        default: 'false'
-        type: boolean
 
 jobs:
   daily-activity-log:
-    if: github.event.schedule != '0 1 * * 0' || github.event.inputs.generate_summary != 'true'
     runs-on: ubuntu-latest
     
     permissions:
@@ -34,7 +20,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # Fetch full history for weekly analysis
       
       - name: Set up environment
         run: |
@@ -47,25 +32,8 @@ jobs:
       
       - name: Set up date variables
         run: |
-          # Get yesterday's date (since we're logging the previous day's activity)
-          echo "LOG_DATE=$(date -d 'yesterday' '+%Y-%m-%d')" >> $GITHUB_ENV
-          echo "LOG_DATE_DISPLAY=$(date -d 'yesterday' '+%B %d, %Y')" >> $GITHUB_ENV
-      
-      - name: Check weekly threshold
-        run: |
-          echo "🎯 Checking weekly commit threshold..."
-          ./scripts/check-weekly-threshold.sh
-          
-          SHOULD_COMMIT=$(cat /tmp/should_commit)
-          WEEKLY_COMMITS=$(cat /tmp/weekly_commits)
-          
-          echo "SHOULD_COMMIT=$SHOULD_COMMIT" >> $GITHUB_ENV
-          echo "WEEKLY_COMMITS=$WEEKLY_COMMITS" >> $GITHUB_ENV
-          
-          if [[ "${{ github.event.inputs.force_commit }}" == "true" ]]; then
-            echo "🔒 Force commit enabled - overriding threshold check"
-            echo "SHOULD_COMMIT=true" >> $GITHUB_ENV
-          fi
+          echo "LOG_DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+          echo "LOG_DATE_DISPLAY=$(date '+%B %d, %Y')" >> $GITHUB_ENV
       
       - name: Fetch WakaTime data
         env:
@@ -94,62 +62,10 @@ jobs:
           
           # Check if there are changes to commit
           if [[ -n $(git status --porcelain) ]]; then
-            git add activity.log activity.json
-            
-            if [[ "$SHOULD_COMMIT" == "true" ]]; then
-              git commit -m "📊 Daily activity log for $LOG_DATE_DISPLAY [Streak: $((WEEKLY_COMMITS + 1))/3]"
-              git push
-              echo "✅ Activity log committed and pushed for $LOG_DATE_DISPLAY"
-              echo "🎯 Streak maintenance: COMMIT made (weekly count: $((WEEKLY_COMMITS + 1))/3)"
-            else
-              git commit -m "📊 Daily activity log for $LOG_DATE_DISPLAY [Data Only - Streak: $WEEKLY_COMMITS/3]"
-              git push
-              echo "✅ Activity log updated (data-only commit) for $LOG_DATE_DISPLAY"
-              echo "🎯 Streak maintenance: QUOTA satisfied ($WEEKLY_COMMITS/3)"
-            fi
+            git add activity.log activity.json summaries/
+            git commit -m "📊 Daily activity log: $LOG_DATE_DISPLAY"
+            git push
+            echo "✅ Activity log committed and pushed for $LOG_DATE_DISPLAY"
           else
             echo "ℹ️ No changes to commit for $LOG_DATE_DISPLAY"
-          fi
-
-  weekly-summary:
-    if: github.event.schedule == '0 1 * * 0' || github.event.inputs.generate_summary == 'true'
-    runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Set up environment
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
-          chmod +x scripts/*.sh
-      
-      - name: Generate weekly summary
-        run: |
-          echo "📊 Generating weekly summary..."
-          ./scripts/generate-weekly-summary.sh
-      
-      - name: Commit weekly summary
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          
-          if [[ -n $(git status --porcelain) ]]; then
-            git add weekly-summary.md
-            
-            WEEK_START=$(date -d 'monday last week' '+%Y-%m-%d')
-            WEEK_END=$(date -d 'sunday last week' '+%Y-%m-%d')
-            WEEK_DISPLAY=$(date -d "$WEEK_START" '+%B %d') - $(date -d "$WEEK_END" '+%B %d, %Y')
-            
-            git commit -m "📋 Weekly summary: $WEEK_DISPLAY"
-            git push
-            echo "✅ Weekly summary committed and pushed"
-          else
-            echo "ℹ️ No changes in weekly summary"
           fi
