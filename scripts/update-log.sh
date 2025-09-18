@@ -42,24 +42,24 @@ EOF
 
 # Check if this date already exists in the log
 if [[ -f "$LOG_FILE" ]] && grep -q "^\[$DATE\]" "$LOG_FILE"; then
-    echo "⚠️  Entry for $DATE already exists. Updating..."
+    echo "⚠️  Entry for $DATE already exists. Overwriting..."
     
-    # Create a temporary file with the updated content
+    # Create a temporary file without the existing entry
     TEMP_FILE=$(mktemp)
     
-    # Copy everything before the existing entry
-    sed "/^\[$DATE\]/,/^$/d" "$LOG_FILE" > "$TEMP_FILE"
+    # Remove the existing entry and its content (from [DATE] until next [DATE] or end of file)
+    awk -v date="$DATE" '
+    BEGIN { skip = 0 }
+    /^\[/ && $0 ~ "^\\[" date "\\]" { skip = 1; next }
+    /^\[/ && skip == 1 && $0 !~ "^\\[" date "\\]" { skip = 0 }
+    /^---$/ && skip == 1 { skip = 0; next }
+    skip == 0 { print }
+    ' "$LOG_FILE" > "$TEMP_FILE"
     
     # Add the new entry
     echo "$LOG_ENTRY" >> "$TEMP_FILE"
     echo "" >> "$TEMP_FILE"
-    
-    # Add everything after the existing entry (if any)
-    sed -n "/^\[$DATE\]/,/^$/p" "$LOG_FILE" | tail -n +2 | while read line; do
-        if [[ "$line" == "" ]]; then
-            break
-        fi
-    done
+    echo "---" >> "$TEMP_FILE"
     
     # Replace the original file
     mv "$TEMP_FILE" "$LOG_FILE"
@@ -69,10 +69,8 @@ else
     # Append the new entry to the log file
     echo "$LOG_ENTRY" >> "$LOG_FILE"
     echo "" >> "$LOG_FILE"
+    echo "---" >> "$LOG_FILE"
 fi
-
-# Add a separator line
-echo "---" >> "$LOG_FILE"
 
 # Update JSON file
 echo "📄 Updating JSON activity log..."
@@ -116,7 +114,7 @@ JSON_ENTRY=$(jq -n \
 
 # Check if entry for this date already exists in JSON
 if jq -e ".entries[] | select(.date == \"$DATE\")" "$JSON_FILE" > /dev/null 2>&1; then
-    echo "⚠️  JSON entry for $DATE already exists. Updating..."
+    echo "⚠️  JSON entry for $DATE already exists. Overwriting..."
     
     # Remove existing entry first
     TEMP_JSON=$(mktemp)

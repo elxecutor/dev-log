@@ -35,6 +35,13 @@ DAILY_MD="summaries/${DATE}.md"
 # Create summaries directory if it doesn't exist
 mkdir -p summaries
 
+# Check if summary already exists
+if [[ -f "$DAILY_MD" ]]; then
+    echo "⚠️  Summary for $DATE already exists. Overwriting..."
+else
+    echo "➕ Creating new summary for $DATE..."
+fi
+
 # Generate daily summary
 cat > "$DAILY_MD" << EOF
 # $DISPLAY_DATE
