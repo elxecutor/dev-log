@@ -55,21 +55,39 @@ jobs:
           echo "📝 Updating activity logs for $LOG_DATE"
           ./scripts/update-log.sh "$LOG_DATE"
       
-      - name: Commit as me
+      - name: Set Git user identity
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push changes
         env:
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
           GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
           PAT: ${{ secrets.PAT }}
         run: |
-          git config user.email "${GIT_USER_EMAIL}"
-          git config user.name "${GIT_USER_NAME}"
+          # Use personal credentials if available, otherwise keep the default bot identity
+          if [[ -n "${GIT_USER_EMAIL}" && -n "${GIT_USER_NAME}" ]]; then
+            git config --local user.email "${GIT_USER_EMAIL}"
+            git config --local user.name "${GIT_USER_NAME}"
+            echo "🔧 Using personal Git identity: ${GIT_USER_NAME} <${GIT_USER_EMAIL}>"
+          else
+            echo "🤖 Using default GitHub Actions bot identity"
+          fi
           
           # Check if there are changes to commit
           if [[ -n $(git status --porcelain) ]]; then
             git add activity.log activity.json summaries/
             git commit -m "📊 Daily activity log: $LOG_DATE_DISPLAY"
-            git push https://x-access-token:${PAT}@github.com/${{ github.repository }}.git HEAD:main
-            echo "✅ Activity log committed and pushed for $LOG_DATE_DISPLAY"
+            
+            # Use PAT for push if available, otherwise use default GITHUB_TOKEN
+            if [[ -n "${PAT}" ]]; then
+              git push https://x-access-token:${PAT}@github.com/${{ github.repository }}.git HEAD:main
+              echo "✅ Activity log committed and pushed using PAT for $LOG_DATE_DISPLAY"
+            else
+              git push
+              echo "✅ Activity log committed and pushed using GITHUB_TOKEN for $LOG_DATE_DISPLAY"
+            fi
           else
             echo "ℹ️ No changes to commit for $LOG_DATE_DISPLAY"
           fi
