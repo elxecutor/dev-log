@@ -55,19 +55,20 @@ jobs:
           echo "📝 Updating activity logs for $LOG_DATE"
           ./scripts/update-log.sh "$LOG_DATE"
       
-      - name: Commit and push changes
+      - name: Commit as me
         env:
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
           GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+          PAT: ${{ secrets.PAT }}
         run: |
-          git config --local user.email "${GIT_USER_EMAIL:-action@github.com}"
-          git config --local user.name "${GIT_USER_NAME:-GitHub Action}"
+          git config user.email "${GIT_USER_EMAIL}"
+          git config user.name "${GIT_USER_NAME}"
           
           # Check if there are changes to commit
           if [[ -n $(git status --porcelain) ]]; then
             git add activity.log activity.json summaries/
             git commit -m "📊 Daily activity log: $LOG_DATE_DISPLAY"
-            git push
+            git push https://x-access-token:${PAT}@github.com/${{ github.repository }}.git HEAD:main
             echo "✅ Activity log committed and pushed for $LOG_DATE_DISPLAY"
           else
             echo "ℹ️ No changes to commit for $LOG_DATE_DISPLAY"
