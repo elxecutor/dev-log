@@ -2,7 +2,6 @@ name: 📊 Daily Activity Logger
 
 on:
   schedule:
-    # Daily activity logging at 11:59 PM UTC+1 (10:59 PM UTC)
     - cron: '59 22 * * *'
   
   # Allow manual triggering
@@ -56,9 +55,12 @@ jobs:
           ./scripts/update-log.sh "$LOG_DATE"
       
       - name: Commit and push changes
+        env:
+          GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+          GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "${GIT_USER_EMAIL:-action@github.com}"
+          git config --local user.name "${GIT_USER_NAME:-GitHub Action}"
           
           # Check if there are changes to commit
           if [[ -n $(git status --porcelain) ]]; then
