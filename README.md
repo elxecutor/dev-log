@@ -1,7 +1,7 @@
 # dev-log
 
 A comprehensive development activity tracking tool that aggregates data from GitHub and WakaTime to generate detailed daily productivity summaries and maintain activity logs.
-
+[![📊 Daily Activity Logger](https://github.com/elxecutor/dev-log/actions/workflows/daily-log.yml/badge.svg)](https://github.com/elxecutor/dev-log/actions/workflows/daily-log.yml)
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
