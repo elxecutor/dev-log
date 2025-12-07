@@ -12,5 +12,6 @@ module And(
 );
 
 	// Put your code here:
+	assign out = a & b;
 
 endmodule

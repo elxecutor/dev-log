@@ -11,5 +11,6 @@ module Xor(
 );
 
 	// Put your code here:
+	assign out = (a & ~b) | (~a & b);
 
 endmodule

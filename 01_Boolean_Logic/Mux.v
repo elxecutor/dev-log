@@ -13,5 +13,6 @@ module Mux(
 );
 
 	// Put your code here:
+	assign out = (sel) ? b : a;
 
 endmodule

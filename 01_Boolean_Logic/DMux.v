@@ -13,5 +13,7 @@ module DMux(
 );
 
 	// Put your code here:
+	assign a = (sel) ? 1'b0 : in;
+	assign b = (sel) ? in : 1'b0;
 
 endmodule

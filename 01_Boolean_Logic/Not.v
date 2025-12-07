@@ -10,5 +10,5 @@ module Not(
 );
 
 	// Put your code here:
-
+	assign out = ~in;
 endmodule
