@@ -2,10 +2,7 @@ name: 📊 Daily Activity Logger
 
 on:
   schedule:
-    # Hourly activity logging (every hour)
-    - cron: '0 * * * *'
-  
-  # Allow manual triggering
+    - cron: '0 5,11,17,23 * * *'
   workflow_dispatch:
 
 jobs:
